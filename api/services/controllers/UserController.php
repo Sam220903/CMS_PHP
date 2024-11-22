@@ -2,7 +2,7 @@
 
 class UserController {
 
-    public function __construct(private UserGateway $gateway) {}
+    public function __construct(private UserGateway $user_gateway, private SkillGateway $skill_gateway) {}
 
     public function processRequest(string $method, ?string $id) : void  {
         if ($id) {
@@ -13,20 +13,30 @@ class UserController {
     }
 
     private function processResourseRequest(string $method, string $id) : void  {
-        
+        switch($method){
+            case 'GET':
+                $user = $this->user_gateway->getUserbyID($id);
+                $skills =$this->skill_gateway->getSkillsbyUser($id);
+                $user[0]['skills'] = $skills;
+                echo json_encode($user);
+                break;
+            default:
+                http_response_code(405);
+                break;
+        }
     }
 
     private function processCollectionRequest(string $method) : void  {
         switch ($method) {
             case 'GET':
-                $users = $this->gateway->getAll();
+                $users = $this->user_gateway->getAll();
                 echo json_encode($users);
                 break;
 
             case 'POST':
                 $data = json_decode(file_get_contents("php://input"));
                 if ($data) {
-                    $res = $this->gateway->addUser($data);
+                    $res = $this->user_gateway->addUser($data);
                     http_response_code(201);
                     echo json_encode([
                         "id" => $res["id"],

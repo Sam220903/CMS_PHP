@@ -9,18 +9,36 @@
 
 
 	$parts = explode("/", $_SERVER["REQUEST_URI"]);
-	
-	if ($parts[4] != 'users'){
-		http_response_code(404);
-		exit;
-	}
-
 	$id = $parts[5] ?? null;
 	
-	$gateway = new UserGateway($database);
+	$user_gateway = new UserGateway($database);
+	$skill_gateway = new SkillGateway($database);
 
-	$controller = new UserController($gateway);
-	$controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
+	switch($parts[4]){
+
+		case 'users':
+			
+			$user_controller = new UserController($user_gateway, $skill_gateway);
+			$user_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
+			break;
+
+		case 'skills': 
+			
+			$skill_controller = new SkillController($skill_gateway);
+			$skill_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
+			break;
+
+		default:
+			http_response_code(404);
+			break;
+			exit;
+	}
+		
+
+	
+	
+	
+	
 	
      /*
 	 

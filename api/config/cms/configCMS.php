@@ -13,4 +13,7 @@
 
     $database = new Database("localhost", "proyecto", "user1", "user1");
     
-	$data		=	'UserGateway.php';
+	$data = array(
+        "cms/UserGateway.php",
+        "cms/SkillGateway.php"
+    );

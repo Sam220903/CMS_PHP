@@ -15,6 +15,21 @@ class UserGateway{
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }   
 
+
+    public function getUserbyID($user_id) : array {
+        $sql = "SELECT users.id, username, password, name, last_name, profession, biography, motivation, photo, phone, email, adress
+                FROM users JOIN profiles ON users.profile_id = profiles.id JOIN contacts ON users.contact_id = contacts.id
+                WHERE users.status = 1 AND users.id = :user_id";
+
+        $stmt = $this -> conn -> prepare($sql);
+
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    
+
     public function addUser($data) : array {
         $stmt = $this -> conn -> prepare("INSERT INTO contacts (phone, email, adress) VALUES (?,?,?)");
         $stmt -> bindValue(1, $data -> phone, PDO::PARAM_INT);
@@ -42,4 +57,5 @@ class UserGateway{
 
         return array("id" => $this -> conn -> lastInsertId(), "username" => $data -> username);
     }
+
 }

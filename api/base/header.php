@@ -23,7 +23,11 @@
 	include_once 'security.php';
 	include_once 'database.php';
 	include_once '../config/'.$config;
-	include_once '../servicesData/'.$data; 
+
+	foreach($data as $d){
+		include_once "../servicesData/".$d;
+	}
+	
 	include_once 'error_handler.php';
 
 	set_exception_handler("ErrorHandler::handleException");
