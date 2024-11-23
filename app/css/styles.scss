@@ -4,28 +4,143 @@
     font-family: "Montserrat", sans-serif;
 }
 
-body{
+html, body{
     height: 100%;
     margin: 0;
 }
 
 #main-container{
-    display: flex;
     height: 100vh;
 }
+
 
 #main-row{
     height: 100%;
 }
 
 .profile-container{
-    background-color: #063573;
-
+    background-color: #05347e;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .details-container{
     background-color: #EDF0F7;
     height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.rectangle{
+    background-color: #05347e;
+    height: 100%;
+}
+
+.photo-container{
+    background-color: #FFF;
+    height: 60%;
+    width: 60%;
+    border-radius: 200px;
+    padding: 10px; 
+    box-sizing: border-box;
+}
+
+.photo-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 200px;
+}
+
+.profile-data{
+    text-align: center;
+    color: #FFF;
+    margin: 10px;
+}
+
+.profile-data h2{
+    font-weight: 700;
+}
+
+.profile-data h5{
+    font-weight: 500;
+}
+
+.info-group{
+    flex: 1;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+}
+
+
+.info-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-section h2{
+    font-weight: 800;
+    color: #05347e;
+}
+
+.info-section p{
+    font-weight: 500;
+    color: #000000;
+}
+
+.info-section b{
+    color: #05347e;
+}
+
+progress{
+    height: 17px;
+    margin: 5px 0;
+    border-radius: 10px;
+    width: 80%;
+    background-color: #a0b3c1;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #a0b3c1;
+    border-radius: 10px;
+}
+
+
+progress::-webkit-progress-value {
+    background-color: #05347e;
+    border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #05347e; 
+    border-radius: 10px;
+}
+
+.skill-progress{
+    display: flex;
+    gap: 15px;
+    margin: 5px 0;
+}
+
+.skill-progress div{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.skill-progress .filled{
+    background-color: #05347e;
+}
+
+.skill-progress .empty{
+    background-color: #a0b3c1;
 }
