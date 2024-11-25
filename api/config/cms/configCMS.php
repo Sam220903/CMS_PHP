@@ -15,5 +15,8 @@
     
 	$data = array(
         "cms/UserGateway.php",
-        "cms/SkillGateway.php"
+        "cms/SkillGateway.php",
+        "cms/StrengthGateway.php",
+        "cms/GoalGateway.php",
+        "cms/ProjectGateway.php"
     );

@@ -2,7 +2,7 @@
 
 class UserController {
 
-    public function __construct(private UserGateway $user_gateway, private SkillGateway $skill_gateway) {}
+    public function __construct(private UserGateway $user_gateway, private SkillGateway $skill_gateway, private StrengthGateway $strength_gateway, private GoalGateway $goal_gateway, private ProjectGateway $project_gateway) {}
 
     public function processRequest(string $method, ?string $id) : void  {
         if ($id) {
@@ -17,7 +17,13 @@ class UserController {
             case 'GET':
                 $user = $this->user_gateway->getUserbyID($id);
                 $skills =$this->skill_gateway->getSkillsbyUser($id);
+                $strengths = $this->strength_gateway->getStrengthsbyUser($id);
+                $goals = $this->goal_gateway->getGoalsbyUser($id);
+                $projects = $this->project_gateway->getProjectsbyUser($id);
                 $user[0]['skills'] = $skills;
+                $user[0]['strengths'] = $strengths;
+                $user[0]['goals'] = $goals;
+                $user[0]['projects'] = $projects;
                 echo json_encode($user);
                 break;
             default:
