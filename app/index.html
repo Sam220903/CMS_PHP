@@ -5,11 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User view</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/functions.js"></script>
     <link rel="stylesheet" href="css/styles.scss">
 </head>
 <body>
     <div class="container-fluid" id="main-container">
+        <div class="row align-items-center" id="main-row">
+            <div class="col-4 profile-container">
+
+                <div class="photo-container">
+                    <img id="user-photo" src="" alt="">
+                </div>
+                <div class="profile-data">
+                    <h2 id="user-name"></h2>
+                    <h5 id="user-profession"></h5>
+                    <p id="user-motivation"></p>
+                </div>
+
+            </div>
+            <div class="col-7 details-container">
+                <div class="info-group">
+                    <div id="biography" class="info-section">
+                        <h2>Biografía</h2>
+                        <p id="user-biography"></p>
+                    </div>
+                    <div id="projects" class="info-section">
+                        <h2>Proyectos</h2>
+                        <div class="projects-container">
+                            <div id="user-projects">
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="goals" class="info-section">
+                        <h2>Objetivos</h2>
+                        <div id="goals-list">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="info-group">
+                    <div id="personality" class="info-section">
+                        <h2>Personalidad</h2>
+                        <div id="user-strengths">
+                            
+                        </div>
+                    </div>
+                    <div id="skills" class="info-section">
+                        <h2>Habilidades</h2>
+                        <div id="user-skills">
+                            
+                        </div>
+                    </div>
+                    <div id="contact" class="info-section">
+                        <h2>Contacto</h2>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                mail
+                            </span>
+                            <p id="user-email"></p>
+                        </div>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                call
+                            </span>
+                            <p id="user-phone"></p>
+                        </div>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                home_pin
+                            </span>
+                            <p id="user-address"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 rectangle">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<!--
+
+<div class="container-fluid" id="main-container">
         <div class="row align-items-center" id="main-row">
             <div class="col-4 profile-container">
 
@@ -29,9 +114,23 @@
                         <h2>Biografía</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga corporis debitis eum vitae atque ea reprehenderit? Eligendi cumque incidunt placeat maxime dolores veritatis, recusandae autem cupiditate perspiciatis error, non beatae?</p>
                     </div>
-                    <div id="motivation" class="info-section">
-                        <h2>Motivación</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum distinctio ab sequi! Ab quis numquam minus, officiis molestias quaerat iure, ratione officia, nostrum dolorum velit. Pariatur rem nesciunt itaque dolores?</p>
+                    <div id="projects" class="info-section">
+                        <h2>Proyectos</h2>
+                        <div class="projects-container">
+                            <div class="project">
+                                <b>SpinDO</b>
+                                App para gestionar Tareas
+                            </div>
+                            <div class="project">
+                                <b>SpinDO</b>
+                                App para gestionar Tareas
+                            </div>
+                            <div class="project">
+                                <b>SpinDO</b>
+                                App para gestionar Tareas
+                            </div>
+                        </div>
+                        
                     </div>
                     <div id="goals" class="info-section">
                         <h2>Objetivos</h2>
@@ -91,8 +190,26 @@
                             <div class="empty"></div>
                         </div>
                     </div>
-                    <div id="stuff" class="info-section">
-                        <h2>Más información</h2>
+                    <div id="contact" class="info-section">
+                        <h2>Contacto</h2>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                mail
+                            </span>
+                            <p>juleskounde@gmail.com</p>
+                        </div>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                call
+                            </span>
+                            <p>555-555-5555</p>
+                        </div>
+                        <div class="contact-data">
+                            <span class="material-symbols-outlined">
+                                home_pin
+                            </span>
+                            <p>Av. Principal #123</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,5 +218,6 @@
         </div>
     </div>
 
-</body>
-</html>
+
+
+-->

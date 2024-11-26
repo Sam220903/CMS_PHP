@@ -25,7 +25,9 @@ class SkillGateway{
         $stmt = $this -> conn ->prepare("SELECT skill, intensity 
                                          FROM skills AS s JOIN user_skill AS us 
                                          ON s.id = us.skill_id
-                                         WHERE us.user_id = ?");
+                                         WHERE us.user_id = ?
+                                         ORDER BY intensity DESC
+                                         LIMIT 3");
         $stmt -> bindValue(1, $user_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

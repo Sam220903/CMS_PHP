@@ -26,7 +26,8 @@ class ProjectGateway{
         $stmt = $this -> conn ->prepare("SELECT p.project_name, p.description
                                          FROM projects AS p JOIN user_project AS up 
                                          ON p.id = up.project_id
-                                         WHERE up.user_id = ?");
+                                         WHERE up.user_id = ?
+                                         LIMIT 3");
         $stmt -> bindValue(1, $user_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

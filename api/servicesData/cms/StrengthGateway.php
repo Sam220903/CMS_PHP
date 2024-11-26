@@ -25,7 +25,9 @@ class StrengthGateway{
         $stmt = $this -> conn ->prepare("SELECT strength, value 
                                          FROM strengths AS s JOIN user_strength AS us 
                                          ON s.id = us.strength_id
-                                         WHERE us.user_id = ?");
+                                         WHERE us.user_id = ?
+                                         ORDER BY value DESC
+                                         LIMIT 4");
         $stmt -> bindValue(1, $user_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
