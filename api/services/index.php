@@ -1,6 +1,7 @@
 <?php
 	$config	='cms/configCMS.php';
 	include_once '../base/header.php';
+	include_once '../base/auth/middleware.php';
 
 
 	spl_autoload_register(function($class){
@@ -16,10 +17,17 @@
 	$strength_gateway = new StrengthGateway($database);
 	$goal_gateway = new GoalGateway($database);
 	$project_gateway = new ProjectGateway($database);
+	$admin_gateway = new AdminGateway($database);
 
 	switch($parts[4]){
 
+		case 'login':
+			$auth_controller = new AuthController($admin_gateway);
+			$result = $auth_controller->authenticate();
+			break;
+
 		case 'users':
+			middlewareAuth();
 			$user_controller = new UserController($user_gateway, $skill_gateway, $strength_gateway, $goal_gateway, $project_gateway);
 			$user_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;

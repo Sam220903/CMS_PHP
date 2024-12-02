@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+*{
+    font-family: "Inter", sans-serif;
+    color: #404660;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+
+#main-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#main-row{
+    height: 100%;
+}
+
+#logo{
+    color: #002976;
+    font-size: 50px;
+}
+
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 80%;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px;
+    border-color: black;
+}
+
+
+#login-button{
+    background-color: #002976;
+    border: none;
+    transition: 0.1s;
+    font-size: larger;
+    font-weight: 600;
+}
+
+#login-button:hover{
+    background-color: #001e4d;
+    transform:  scale(1.1);
+    transition: 0.1s;
+}
+
+#login-button.disabled{
+    background-color: #b3b3b3;
+    color: #404660;
+    cursor: not-allowed;
+    transition: 0.1s;
+}
+
+.form-floating {
+    position: relative;
+}
+
+.form-floating .fa-eye, .form-floating .fa-eye-slash {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    cursor: pointer;
+}
+
+

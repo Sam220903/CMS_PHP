@@ -1,4 +1,5 @@
-<
+<?php
+
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -8,7 +9,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 define("UTF8",JSON_UNESCAPED_UNICODE);
-?php
 
 function curlPHP($url,$metodo,$datos,$auth){
     $curl = curl_init();
@@ -28,30 +28,37 @@ function curlPHP($url,$metodo,$datos,$auth){
         ),
     ));
     $response = curl_exec($curl);
+    $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
-    return $response;
+    return array("response"=>$response,"http_code"=>$http_code);
 }
 
 $data = json_decode(file_get_contents("php://input"));
 if(isset($data->endpoint)){
-    if($data->method == "GET"){
-        if($data->endpoint == "getUserInfo"){
-            if(isset($data->user_id)){
-                $url = "http://localhost/Proyecto/api/services/users/".$data->user_id;
-                $method = "GET";
-                $data = "";
-                $auth = "12345";
-                $response = curlPHP($url,$method,$data,$auth);
-                $response = json_decode($response);
+    if($data->method == "POST"){
+        if($data->endpoint == "login"){
+            if(isset($data->credentials)){
+                $url = "http://localhost/Proyecto/api/services/login/";
+                $method = "POST";
+                $data = json_encode($data->credentials);
+                $auth = "";
+                $result = curlPHP($url,$method,$data,$auth);
 
+                $response = $result['response'];
+                $http_code = $result['http_code'];
+                
+                if($http_code == 200){
+                    http_response_code(200);
+                    echo $response;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["message"=>"Datos de usuario inválidos"],UTF8);
+                    die();
+                }
 
-                http_response_code(200);
-                $array = array("status"=>200,"data"=>$response);
-                echo json_encode($array,UTF8);
             } else {
-                http_response_code(400);
-                $array = array("status"=>404,"message"=>"No se ha enviado el user_id");
-                echo json_encode($array,UTF8);
+                http_response_code(404);
+                echo json_encode(["message"=>"Datos de usuario inválidos"],UTF8);
                 die();
             }
         } else {

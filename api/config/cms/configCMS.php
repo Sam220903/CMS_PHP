@@ -18,5 +18,6 @@
         "cms/SkillGateway.php",
         "cms/StrengthGateway.php",
         "cms/GoalGateway.php",
-        "cms/ProjectGateway.php"
+        "cms/ProjectGateway.php",
+        "cms/AdminGateway.php",
     );

@@ -23,6 +23,7 @@
 	include_once 'security.php';
 	include_once 'database.php';
 	include_once '../config/'.$config;
+	include_once 'auth/JWT.php';
 
 	foreach($data as $d){
 		include_once "../servicesData/".$d;
