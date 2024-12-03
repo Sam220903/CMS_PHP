@@ -40,6 +40,7 @@ class UserController {
                 break;
 
             case 'POST':
+                
                 $data = json_decode(file_get_contents("php://input"));
                 if ($data) {
                     $res = $this->user_gateway->addUser($data);

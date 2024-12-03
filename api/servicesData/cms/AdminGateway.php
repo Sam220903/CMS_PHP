@@ -10,7 +10,7 @@ class AdminGateway{
 
     public function login($username, $password){
         $sql = "SELECT id, username, password
-                FROM users 
+                FROM administrators 
                 WHERE username = :username AND password = :password";
 
         $stmt = $this -> conn -> prepare($sql);

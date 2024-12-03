@@ -1,8 +1,7 @@
 async function getUserInfo(){
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", "12345");
+    myHeaders.append("Authorization", "123");
     myHeaders.append("Content-Type", "application/json");
-
 
     // Obtener el user por parámetro URL
     const user = new URLSearchParams(window.location.search).get('user_id');
@@ -11,7 +10,7 @@ async function getUserInfo(){
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify({
-            endpoint: 'getUserInfo',
+            endpoint: 'getUserInfo', 
             method: 'GET',
             user_id: user
         }),

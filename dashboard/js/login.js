@@ -43,8 +43,6 @@ async function login() {
         }),
         redirect : 'follow'
     };
-    console.log(username.value);
-    console.log(password.value);
     await fetch('http://localhost/Proyecto/dashboard/php/login.php', requestOptions)
     .then((response) => response.text())
     .then((result) => {
@@ -54,7 +52,7 @@ async function login() {
         if (token) {
             alert(message);
             localStorage.setItem('token', token);
-            window.location.href = 'http://localhost/Proyecto/dashboard/views/AdminView.html';
+            window.location.href = 'http://localhost/Proyecto/dashboard/views/home.html';
         } else {
             alert(message);
         }

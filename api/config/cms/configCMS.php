@@ -11,7 +11,7 @@
     
     */
 
-    $database = new Database("localhost", "proyecto", "user1", "user1");
+    $database = new Database("localhost", "project", "user1", "user1");
     
 	$data = array(
         "cms/UserGateway.php",
