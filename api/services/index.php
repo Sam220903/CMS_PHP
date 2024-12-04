@@ -33,21 +33,25 @@
 			break;
 
 		case 'skills': 
+			middlewareAuth();
 			$skill_controller = new SkillController($skill_gateway);
 			$skill_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;
 
 		case 'strengths':
+			middlewareAuth();
 			$strength_controller = new StrengthController($strength_gateway);
 			$strength_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;
 
 		case 'goals':
+			middlewareAuth();
 			$goal_controller = new GoalController($goal_gateway);
 			$goal_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;
 
 		case 'projects':
+			middlewareAuth();
 			$project_controller = new ProjectController($project_gateway);
 			$project_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;

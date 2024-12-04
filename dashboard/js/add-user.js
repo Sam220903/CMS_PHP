@@ -1,12 +1,21 @@
+token = localStorage.getItem('token');
+if (!token) {
+    window.location.href = 'http://localhost/Proyecto/dashboard/';
+}
+
+console.log(token);
+
 async function getSkills(){
     const myheaders = new Headers();
     myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     const requestOptions = {
         method : 'POST',
         headers : myheaders,
         body : JSON.stringify({
             endpoint : 'getSkills',
-            method : 'GET'
+            method : 'GET',
+            token : localStorage.getItem('token')
         }),
         redirect : 'follow'
     };
@@ -32,12 +41,14 @@ async function getSkills(){
 async function getStrengths(){
     const myheaders = new Headers();
     myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     const requestOptions = {
         method : 'POST',
         headers : myheaders,
         body : JSON.stringify({
             endpoint : 'getStrengths',
-            method : 'GET'
+            method : 'GET',
+            token : localStorage.getItem('token')
         }),
         redirect : 'follow'
     };
@@ -65,12 +76,14 @@ async function getStrengths(){
 async function getProjects(){
     const myheaders = new Headers();
     myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     const requestOptions = {
         method : 'POST',
         headers : myheaders,
         body : JSON.stringify({
             endpoint : 'getProjects',
-            method : 'GET'
+            method : 'GET',
+            token : localStorage.getItem('token')
         }),
         redirect : 'follow'
     };
@@ -96,3 +109,131 @@ async function getProjects(){
 getSkills();
 getStrengths();
 getProjects();
+
+async function addSkill(){
+    const myheaders = new Headers();
+    myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const requestOptions = {
+        method : 'POST',
+        headers : myheaders,
+        body : JSON.stringify({
+            endpoint : 'addSkill',
+            method : 'POST',
+            skill : document.getElementById('skill-name').value,
+            token : localStorage.getItem('token')
+        }),
+        redirect : 'follow'
+    };
+    await fetch('http://localhost/Proyecto/dashboard/php/intermediary.php', requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+        const data = JSON.parse(result);
+        const message = data.message;
+        alert(message);
+        getSkills();
+        document.getElementById('skill-name').value = '';
+    })
+}
+
+const addSkillButton = document.getElementById('add-skill');
+
+
+addSkillButton.addEventListener('click', addSkill);
+
+
+
+async function addStrength(){
+    const myheaders = new Headers();
+    myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const requestOptions = {
+        method : 'POST',
+        headers : myheaders,
+        body : JSON.stringify({
+            endpoint : 'addStrength',
+            method : 'POST',
+            strength : document.getElementById('strength-name').value,
+            token : localStorage.getItem('token')
+        }),
+        redirect : 'follow'
+    };
+    await fetch('http://localhost/Proyecto/dashboard/php/intermediary.php', requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+        const data = JSON.parse(result);
+        const message = data.message;
+        alert(message);
+        getStrengths();
+        document.getElementById('strength-name').value = '';
+    })
+}
+
+const addStrengthButton = document.getElementById('add-strength');
+
+addStrengthButton.addEventListener('click', addStrength);
+
+async function addProject(){
+    const myheaders = new Headers();
+    myheaders.append('Content-Type', 'application/json');
+    myheaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    const requestOptions = {
+        method : 'POST',
+        headers : myheaders,
+        body : JSON.stringify({
+            endpoint : 'addProject',
+            method : 'POST',
+            project : document.getElementById('project-name').value,
+            description : document.getElementById('project-description').value,
+            token : localStorage.getItem('token')
+        }),
+        redirect : 'follow'
+    };
+    await fetch('http://localhost/Proyecto/dashboard/php/intermediary.php', requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+        const data = JSON.parse(result);
+        const message = data.message;
+        alert(message);
+        getProjects();
+        document.getElementById('project-name').value = '';
+        document.getElementById('project-description').value = '';
+    })
+}
+
+const addProjectButton = document.getElementById('add-project');
+
+addProjectButton.addEventListener('click', addProject);
+
+
+async function login() {
+    const myheaders = new Headers();
+    myheaders.append('Content-Type', 'application/json');
+    const requestOptions = {
+        method : 'POST',
+        headers : myheaders,
+        body : JSON.stringify({
+            endpoint : 'login',
+            method : 'POST',
+            credentials : {
+                username : username.value,
+                password : password.value
+            }
+        }),
+        redirect : 'follow'
+    };
+    await fetch('http://localhost/Proyecto/dashboard/php/login.php', requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+        const data = JSON.parse(result);
+        const token = data.token;
+        const message = data.message;
+        if (token) {
+            alert(message);
+            localStorage.setItem('token', token);
+            window.location.href = 'http://localhost/Proyecto/dashboard/views/home.html';
+        } else {
+            alert(message);
+        }
+    })
+}

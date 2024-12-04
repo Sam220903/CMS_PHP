@@ -34,15 +34,15 @@ function curlPHP($url,$metodo,$datos,$auth){
 }
 
 $data = json_decode(file_get_contents("php://input"));
+
+$auth = isset($data->token) ? $data->token : "";
+
 if(isset($data->endpoint)){
-
-
     if($data->method == "GET"){
         if($data->endpoint == "getSkills"){
             $url = "http://localhost/Proyecto/api/services/skills/";
             $method = "GET";
             $data = "";
-            $auth = "";
             $result = curlPHP($url,$method,$data,$auth);
             $response = $result['response'];
             $http_code = $result['http_code'];
@@ -58,7 +58,6 @@ if(isset($data->endpoint)){
             $url = "http://localhost/Proyecto/api/services/strengths/";
             $method = "GET";
             $data = "";
-            $auth = "";
             $result = curlPHP($url,$method,$data,$auth);
             $response = $result['response'];
             $http_code = $result['http_code'];
@@ -74,7 +73,6 @@ if(isset($data->endpoint)){
             $url = "http://localhost/Proyecto/api/services/projects/";
             $method = "GET";
             $data = "";
-            $auth = "";
             $result = curlPHP($url,$method,$data,$auth);
             $response = $result['response'];
             $http_code = $result['http_code'];
@@ -90,7 +88,6 @@ if(isset($data->endpoint)){
             $url = "http://localhost/Proyecto/api/services/users/";
             $method = "GET";
             $data = "";
-            $auth = "";
             $result = curlPHP($url,$method,$data,$auth);
             $response = $result['response'];
             $http_code = $result['http_code'];
@@ -116,29 +113,76 @@ if(isset($data->endpoint)){
 
 
     else if($data->method == "POST"){
-        if($data->endpoint == "login"){
-            if(isset($data->credentials)){
-                $url = "http://localhost/Proyecto/api/services/login/";
+        if($data->endpoint == "addSkill"){
+            if(isset($data->skill)){
+                $url = "http://localhost/Proyecto/api/services/skills/";
                 $method = "POST";
-                $data = json_encode($data->credentials);
-                $auth = "";
+                $data = json_encode(["skill"=>$data->skill],UTF8);
                 $result = curlPHP($url,$method,$data,$auth);
 
                 $response = $result['response'];
                 $http_code = $result['http_code'];
                 
-                if($http_code == 200){
+                if($http_code == 201){
                     http_response_code(200);
                     echo $response;
                 } else {
                     http_response_code(404);
-                    echo json_encode(["message"=>"Datos de usuario inválidos"],UTF8);
+                    echo json_encode(["message"=>"Error de datos"],UTF8);
                     die();
                 }
 
             } else {
                 http_response_code(404);
-                echo json_encode(["message"=>"Datos de usuario inválidos"],UTF8);
+                echo json_encode(["message"=>"Error de datos"],UTF8);
+                die();
+            }
+        } else if ($data->endpoint == "addStrength"){
+            if(isset($data->strength)){
+                $url = "http://localhost/Proyecto/api/services/strengths/";
+                $method = "POST";
+                $data = json_encode(["strength"=>$data->strength],UTF8);
+                $result = curlPHP($url,$method,$data,$auth);
+
+                $response = $result['response'];
+                $http_code = $result['http_code'];
+                
+                if($http_code == 201){
+                    http_response_code(200);
+                    echo $response;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["message"=>"Error de datos"],UTF8);
+                    die();
+                }
+
+            } else {
+                http_response_code(404);
+                echo json_encode(["message"=>"Error de datos"],UTF8);
+                die();
+            }
+        } else if ($data->endpoint == "addProject"){
+            if(isset($data->project) && isset($data->description)){
+                $url = "http://localhost/Proyecto/api/services/projects/";
+                $method = "POST";
+                $data = json_encode(["project"=>$data->project,"description"=>$data->description],UTF8);
+                $result = curlPHP($url,$method,$data,$auth);
+
+                $response = $result['response'];
+                $http_code = $result['http_code'];
+                
+                if($http_code == 201){
+                    http_response_code(200);
+                    echo $response;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["message"=>"Error de datos"],UTF8);
+                    die();
+                }
+
+            } else {
+                http_response_code(404);
+                echo json_encode(["message"=>"Error de datos"],UTF8);
                 die();
             }
         } else {

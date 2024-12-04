@@ -89,7 +89,30 @@
                                     <input type="text" class="form-control" id="address" name="address">
                                 </div>
                             </fieldset>
-    
+
+                            <fieldset>
+                                <legend>Metas</legend>
+                                <div class="mb-1">
+                                    <label for="goal1" class="form-label">Meta 1</label>
+                                    <input type="text" class="form-control" id="goal1" name="goal1">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="goal2" class="form-label">Meta 2</label>
+                                    <input type="text" class="form-control" id="goal2" name="goal2">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="goal3" class="form-label">Meta 3</label>
+                                    <input type="text" class="form-control" id="goal3" name="goal3">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="goal4" class="form-label">Meta 4</label>
+                                    <input type="text" class="form-control" id="goal4" name="goal4">
+                                </div>
+                                <div class="mb-1">
+                                    <label for="goal5" class="form-label">Meta 5</label>
+                                    <input type="text" class="form-control" id="goal5" name="goal5">
+                                </div>
+                            </fieldset>
                         </div>
 
                         <div class="input-group">
@@ -131,6 +154,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="create-option">
+                                    <button type="button" class="btn add-option-btn mt-3" id="add-skill-btn" data-bs-toggle="modal" data-bs-target="#add-skill-modal">Añadir Habilidad</button>
+                                </div>
+                                
+                                <div class="modal fade" id="add-skill-modal" tabindex="-1" aria-labelledby="add-skill-label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="add-skill-label">Añadir Habilidad</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="">
+                                            <div class="modal-body">
+                                                <div class="my-2">
+                                                    <label for="skill-name" class="form-label">Habilidad</label>
+                                                    <input type="text" class="form-control" id="skill-name" name="skill-name">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn add-option-btn" data-bs-dismiss="modal">Cancelar</button>
+                                              <button type="button" class="btn add-option-btn" data-bs-dismiss="modal" id="add-skill">Añadir Habilidad</button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
                             </fieldset>
 
                             <fieldset>
@@ -184,12 +234,35 @@
                                                 <input type="range" class="form-range" id="str4-level" name="str4-level" min="1" max="100" step="1">
                                             </div>
                                         </div>
-
-                                    </div>
-                                    
+                                    </div>   
                                 </div>
-                                <div class="mb-3"></div>
-                                <div class="mb-3"></div>
+                                <div class="create-option">
+                                    <button type="button" class="btn add-option-btn mt-3" id="add-strength-btn" data-bs-toggle="modal" data-bs-target="#add-strength-modal">Añadir Fortaleza</button>
+                                </div>
+
+                                <div class="modal fade" id="add-strength-modal" tabindex="-1" aria-labelledby="add-strength-label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="add-strength-label">Añadir Fortaleza</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="">
+                                            <div class="modal-body">
+                                                <div class="my-2">
+                                                    <label for="strength-name" class="form-label">Fortaleza</label>
+                                                    <input type="text" class="form-control" id="strength-name" name="strength-name">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn add-option-btn" data-bs-dismiss="modal">Cancelar</button>
+                                              <button type="button" class="btn add-option-btn" id="add-strength" data-bs-dismiss="modal">Añadir Fortaleza</button>
+                                            </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
                             </fieldset>
 
                             <fieldset>
@@ -220,12 +293,43 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="create-option">
+                                    <button class="btn add-option-btn mt-3" id="add-project-btn" data-bs-toggle="modal" data-bs-target="#add-project-modal">Añadir Proyecto</button>
+                                </div>
                             </fieldset>
-                            <button type="submit" class="btn btn-primary">Añadir usuario</button>
-                        </div>
-                        
 
-                        
+                            <div class="modal fade" id="add-project-modal" tabindex="-1" aria-labelledby="add-project-label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="add-project-label">Añadir Proyecto</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="">
+                                        <div class="modal-body">
+                                            <div class="my-2">
+                                                <label for="project-name" class="form-label">Proyecto</label>
+                                                <input type="text" class="form-control" id="project-name" name="project-name">
+                                            </div>
+                                            <div class="my-2">
+                                                <label for="project-description" class="form-label">Descripción</label>
+                                                <input type="text" class="form-control" id="project-description" name="project-description">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn add-option-btn" data-bs-dismiss="modal">Cancelar</button>
+                                          <button type="button" class="btn add-option-btn" id="add-project" data-bs-dismiss="modal">Añadir Proyecto</button>
+                                        </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+
+                            <div id="create-user">
+                                <button type="submit" class="btn btn-primary"  id="create-user-btn">Añadir usuario</button>
+                            </div>
+                        </div>
+            
                     </form>
 
             </div>
