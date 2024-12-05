@@ -43,7 +43,7 @@
                 </div>
 
                 <div id="add-user-form">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data" id="create-user-form">
                         <div class="input-group">
                             <fieldset>
                                 <legend>Información de perfil</legend>
@@ -121,7 +121,7 @@
                                 <div class="mb-1">
                                     <label for="skill1" class="form-label">Habilidad 1</label>
                                     <div class="skill-data" id="skill1">
-                                        <select class="form-select mx-2" name="skill1" id="skills-set-1">
+                                        <select class="form-select mx-2" name="skills-set-1" id="skills-set-1">
 
                                         </select>
                                         <div class="mx-2">
@@ -133,7 +133,7 @@
                                 <div class="mb-1">
                                     <label for="skill2" class="form-label">Habilidad 2</label>
                                     <div class="skill-data" id="skill2">
-                                        <select class="form-select mx-2" name="skill2" id="skills-set-2">
+                                        <select class="form-select mx-2" name="skills-set-2" id="skills-set-2">
                                             
                                         </select>
                                         <div class="mx 2">
@@ -145,7 +145,7 @@
                                 <div class="mb-1">
                                     <label for="skill3" class="form-label">Habilidad 3</label>
                                     <div class="skill-data" id="skill3">
-                                        <select class="form-select mx-2" name="skill3" id="skills-set-3">
+                                        <select class="form-select mx-2" name="skills-set-3" id="skills-set-3">
                                            
                                         </select>
                                         <div class="mx-2">
@@ -188,7 +188,7 @@
                                 <div class="mb-1">
                                     <label for="str1" class="form-label">Fortaleza 1</label>
                                     <div class="str-data" id="str1">
-                                        <select class="form-select mx-2" name="str1" id="strengths-set-1">
+                                        <select class="form-select mx-2" name="strengths-set-1" id="strengths-set-1">
 
                                         </select>
                                         <div class="mx-2">
@@ -200,8 +200,8 @@
                                     <div class="mb-1">
                                         <label for="str2" class="form-label">Fortaleza 2</label>
                                         <div class="str-data" id="str2">
-                                            <select class="form-select mx-2" name="str2" id="strengths-set-2">
-
+                                            <select class="form-select mx-2" name="strengths-set-2" id="strengths-set-2">
+                                                
                                             </select>
                                             <div class="mx-2">
                                                 <label for="str2-level" class="form-label mx-2">Valor</label>
@@ -213,7 +213,7 @@
                                     <div class="mb-1">
                                         <label for="str3" class="form-label">Fortaleza 3</label>
                                         <div class="str-data" id="str3">
-                                            <select class="form-select mx-2" name="str3" id="strengths-set-3">
+                                            <select class="form-select mx-2" name="strengths-set-3" id="strengths-set-3">
 
                                             </select>
                                             <div class="mx-2">
@@ -226,7 +226,7 @@
                                     <div class="mb-1">
                                         <label for="str4" class="form-label">Fortaleza 4</label>
                                         <div class="str-data" id="str4">
-                                            <select class="form-select mx-2" name="str4" id="strengths-set-4">
+                                            <select class="form-select mx-2" name="strengths-set-4" id="strengths-set-4">
 
                                             </select>
                                             <div class="mx-2">
@@ -270,7 +270,7 @@
                                 <div class="mb-1">
                                     <label for="project1" class="form-label">Proyecto 1</label>
                                     <div class="project-data" id="project1">
-                                        <select class="form-select mx-2" name="project1" id="projects-set-1">
+                                        <select class="form-select mx-2" name="projects-set-1" id="projects-set-1">
 
                                         </select>
                                     </div>
@@ -279,7 +279,7 @@
                                 <div class="mb-1">
                                     <label for="project2" class="form-label">Proyecto 2</label>
                                     <div class="project-data" id="project2">
-                                        <select class="form-select mx-2" name="project2" id="projects-set-2">
+                                        <select class="form-select mx-2" name="projects-set-2" id="projects-set-2">
 
                                         </select>
                                     </div>
@@ -288,13 +288,13 @@
                                 <div class="mb-1">
                                     <label for="project3" class="form-label">Proyecto 3</label>
                                     <div class="project-data" id="project3">
-                                        <select class="form-select mx-2" name="project3" id="projects-set-3">
+                                        <select class="form-select mx-2" name="projects-set-3" id="projects-set-3">
 
                                         </select>
                                     </div>
                                 </div>
                                 <div class="create-option">
-                                    <button class="btn add-option-btn mt-3" id="add-project-btn" data-bs-toggle="modal" data-bs-target="#add-project-modal">Añadir Proyecto</button>
+                                    <button type="button" class="btn add-option-btn mt-3" id="add-project-btn" data-bs-toggle="modal" data-bs-target="#add-project-modal">Añadir Proyecto</button>
                                 </div>
                             </fieldset>
 

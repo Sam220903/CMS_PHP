@@ -49,9 +49,12 @@ async function login() {
         const data = JSON.parse(result);
         const token = data.token;
         const message = data.message;
+        const admin_data = data.user;
         if (token) {
             alert(message);
             localStorage.setItem('token', token);
+            localStorage.setItem('username', admin_data.username);
+            localStorage.setItem('admin_id', admin_data.id);
             window.location.href = 'http://localhost/Proyecto/dashboard/views/home.html';
         } else {
             alert(message);

@@ -14,11 +14,11 @@ class GoalGateway{
     }
 
     public function addGoal($data) : array{
-        $stmt = $this -> conn -> prepare("INSERT INTO goals (goal) VALUES (?)");
-        $stmt -> bindValue(1, $data -> goal);
+        $stmt = $this -> conn -> prepare("INSERT INTO goals (goal, user_id) VALUES (?, ?)");
+        $stmt -> bindValue(1, $data['goal']);
+        $stmt -> bindValue(2, $data['user_id'], PDO::PARAM_INT);
         $stmt -> execute();
-
-        return array("id" =>$this -> conn -> lastInsertId(), "goal" => $data -> goal);
+        return array("id" =>$this -> conn -> lastInsertId(), "goal" => $data['goal'], "user_id" => $data['user_id']);
     }
 
     public function getGoalsbyUser($user_id){

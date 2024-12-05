@@ -27,7 +27,6 @@
 			break;
 
 		case 'users':
-			middlewareAuth();
 			$user_controller = new UserController($user_gateway, $skill_gateway, $strength_gateway, $goal_gateway, $project_gateway);
 			$user_controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
 			break;

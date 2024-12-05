@@ -10,6 +10,15 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 define("UTF8",JSON_UNESCAPED_UNICODE);
 
+function saveImage($image){
+    $image_parts = explode(";base64,", $image);
+    $image_base64 = base64_decode($image_parts[1]);
+    $file_name = uniqid().".jpg";
+    $file = "../../api/img/".$file_name;
+    file_put_contents($file, $image_base64);
+    return $file_name;  
+}
+
 function curlPHP($url,$metodo,$datos,$auth){
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -109,10 +118,7 @@ if(isset($data->endpoint)){
         }
 
         
-    }
-
-
-    else if($data->method == "POST"){
+    } else if($data->method == "POST"){
         if($data->endpoint == "addSkill"){
             if(isset($data->skill)){
                 $url = "http://localhost/Proyecto/api/services/skills/";
@@ -185,6 +191,34 @@ if(isset($data->endpoint)){
                 echo json_encode(["message"=>"Error de datos"],UTF8);
                 die();
             }
+
+        } else if ($data->endpoint == "addUser"){
+            if(isset($data)){
+                $url = "http://localhost/Proyecto/api/services/users/";
+                $method = "POST";
+
+                $data -> user -> user_data -> photo = saveImage($data -> user -> user_data -> photo);
+
+                $data = json_encode($data -> user);
+                $result = curlPHP($url,$method,$data,$auth);
+
+                $response = $result['response'];
+                $http_code = $result['http_code'];
+                
+                if($http_code == 201){
+                    http_response_code(200);
+                    echo $response;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["message"=>"Error de datos"],UTF8);
+                    die();
+                }
+
+            } else {
+                http_response_code(404);
+                echo json_encode(["message"=>"Error de datos"],UTF8);
+                die();
+            }
         } else {
             http_response_code(404);
             $array = array("status"=>404,"message"=>"Not Found");
@@ -192,6 +226,38 @@ if(isset($data->endpoint)){
             die();
         }
         
+    } else if ($data->method == "DELETE"){
+        if($data->endpoint == "deleteUser"){
+            if(isset($data->user_id)){
+                $url = "http://localhost/Proyecto/api/services/users/".$data->user_id;
+                $method = "DELETE";
+                $data = "";
+                $result = curlPHP($url,$method,$data,$auth);
+
+                $response = $result['response'];
+                $http_code = $result['http_code'];
+                
+                if($http_code == 200){
+                    http_response_code(200);
+                    echo $response;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["message"=>"Error de datos"],UTF8);
+                    die();
+                }
+
+            } else {
+                http_response_code(404);
+                echo json_encode(["message"=>"Error de datos"],UTF8);
+                die();
+            }
+        } else {
+            http_response_code(404);
+            $array = array("status"=>404,"message"=>"Not Found");
+            echo json_encode($array,UTF8);
+            die();
+        }
+
     } else {
         http_response_code(404);
         $array = array("status"=>404,"message"=>"Acción desconocida");
@@ -207,11 +273,3 @@ if(isset($data->endpoint)){
     die();
 }
 
-function saveImage($image){
-    $image_parts = explode(";base64,", $image);
-    $image_base64 = base64_decode($image_parts[1]);
-    $file_name = uniqid().".jpg";
-    $file = "../../api/img/lottery/".$file_name;
-    file_put_contents($file, $image_base64);
-    return $file_name;  
-}
