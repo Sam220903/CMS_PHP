@@ -3,7 +3,7 @@
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET,POST,PATCH,DELETE");
+header("Access-Control-Allow-Methods: GET,POST,PATCH,DELETE,OPTIONS");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -31,6 +31,15 @@ function curlPHP($url,$metodo,$datos,$auth){
     $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
     return array("response"=>$response,"http_code"=>$http_code);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization');
+    header('Access-Control-Max-Age: 3600');
+    http_response_code(204);
+    exit();
 }
 
 $data = json_decode(file_get_contents("php://input"));

@@ -55,7 +55,7 @@ async function login() {
             localStorage.setItem('token', token);
             localStorage.setItem('username', admin_data.username);
             localStorage.setItem('admin_id', admin_data.id);
-            window.location.href = 'http://localhost/Proyecto/dashboard/views/home.html';
+            window.location.href = './views/home.html';
         } else {
             alert(message);
         }

@@ -12,7 +12,7 @@ if (token) {
 
 function verifyToken() {
     if (!token) {
-        window.location.href = 'http://localhost/Proyecto/dashboard';
+        window.location.href = '../';
     }
 }
 
@@ -20,7 +20,7 @@ verifyToken();
 
 function logout() {
     localStorage.removeItem('token');
-    window.location.href = 'http://localhost/Proyecto/dashboard';
+    window.location.href = '../';
 }
 
 const logoutButton = document.getElementById('logout');
@@ -28,7 +28,7 @@ logoutButton.addEventListener('click', logout);
 
 const addUsersButton = document.getElementById('add-user');
 addUsersButton.addEventListener('click', () => {
-    window.location.href = 'http://localhost/Proyecto/dashboard/views/add-user.html';
+    window.location.href = './add-user.html';
 });
 
 
@@ -62,9 +62,6 @@ async function getUsers() {
                     <button class="btn-user-action btn-view" onclick="viewUser(${user.id})">
                         <i class="fas fa-eye"></i>
                     </button>
-                    <button class="btn-user-action btn-edit">
-                        <i class="fas fa-pencil"></i>
-                    </button>
                     <button class="btn-user-action btn-delete" onclick="verifyDeleteUser(${user.id})">
                         <i class="fas fa-trash"></i>
                     </button> 
@@ -77,8 +74,15 @@ async function getUsers() {
 
 getUsers();
 
+/**
+ * 
+ *                  <button class="btn-user-action btn-edit">
+                        <i class="fas fa-pencil"></i>
+                    </button>
+ */
+
 function viewUser(id) {
-    window.location.href = `http://localhost/Proyecto/app/?user_id=${id}`;
+    window.location.href = `../../app/?user_id=${id}`;
 }
 
 function verifyDeleteUser(id) {

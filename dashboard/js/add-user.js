@@ -1,7 +1,7 @@
 token = localStorage.getItem('token');
 admin_id = localStorage.getItem('admin_id');
 if (!token) {
-    window.location.href = 'http://localhost/Proyecto/dashboard/';
+    window.location.href = '../';
 }
 
 console.log(token);

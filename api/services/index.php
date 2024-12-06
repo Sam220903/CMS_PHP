@@ -19,6 +19,16 @@
 	$project_gateway = new ProjectGateway($database);
 	$admin_gateway = new AdminGateway($database);
 
+
+	if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS');
+		header('Access-Control-Allow-Headers: Content-Type, Authorization');
+		header('Access-Control-Max-Age: 3600');
+		http_response_code(204);
+		exit();
+	}
+
 	switch($parts[4]){
 
 		case 'login':
@@ -60,54 +70,5 @@
 			break;
 			exit;
 	}
-		
-
-	
-	
-	
-	
-	
-     /*
-	 
-	 switch($_SERVER['REQUEST_METHOD']){
-        case 'GET':
-            $numCards = isset($_GET['numCards']) ? $_GET['numCards'] : null;
-            $cardID = isset($_GET['cardID']) ? $_GET['cardID'] : null;
-            $conn = connection($connection);
-            $res = getLottery($conn, $numCards, $cardID);
-            $array = array();
-            $array['status'] = 200;
-            $array['error'] = false;
-            $array['data'] = json_decode($res);
-            $array=json_encode($array);
-            echo $array;
-            die();
-        break;
-
-        case 'POST':
-            if($data = json_decode(file_get_contents("php://input"))){
-				$conn  = connection($connection);
-				$res  = insertCard($conn,$data);
-				$array = array();
-				$array['status'] = 200;
-				$array['error'] = false;
-				$array['data'] = json_decode($res);
-				$array=json_encode($array);
-				echo $array;
-				die();
-			}else{
-				$array=array();
-				$array['status'] = 400;
-				$array['error'] = "Error de datos";
-				$array['data'] = "";
-				$array=json_encode($array);
-				echo $array;
-				die();
-			}
-        break;
-        default: break;
-    }
-	 
-	 */
                     
 ?>

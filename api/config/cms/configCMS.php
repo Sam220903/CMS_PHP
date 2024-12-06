@@ -1,15 +1,6 @@
 <?php
 	$debug		=	true		;
 	$key		=	"12345"		;
-    /*
-    $connection   =   array(
-        "servername" =>   "localhost", 
-        "username"   =>   "usercms",
-        "password"   =>   "usercms",
-        "dbname"     =>   "proyecto"
-    );
-    
-    */
 
     $database = new Database("localhost", "project", "user1", "user1");
     
